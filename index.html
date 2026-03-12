@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheByteStudio - Marketplace de Plantillas Web Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="./estilos.css"> 
+   
+</head>
+<body>
+
+    <header>
+        <div class="container">
+           <nav>
+
+<a class="logo" href="index.html">TheByte<span>Studio</span></a>
+
+<ul class="nav-links">
+<li><a href="index.html">Inicio</a></li>
+<li><a href="#catalogo">Plantillas</a></li>
+<li><a href="servicios.html">Servicios</a></li>
+<li><a href="contacto.html">Contacto</a></li>
+</ul>
+
+<div id="auth-area">
+
+<div id="googleSignIn"></div>
+
+<div id="profile" class="hidden">
+    <img id="profilePic" class="profile-pic" onclick="toggleProfileMenu(event)">
+    
+    <div id="profileDropdown" class="profile-dropdown">
+        <button onclick="logout()">Cerrar sesión</button>
+    </div>
+</div>
+</div>
+
+</nav>
+        </div>
+
+        
+        <div id="loginModal" class="modal">
+
+<div class="modal-content">
+
+<h2>Iniciar Sesión</h2>
+
+<input
+type="email"
+id="emailInput"
+placeholder="Tu correo electrónico"
+required
+>
+
+<button onclick="login()" class="btn-login">
+Entrar
+</button>
+
+<button onclick="closeModal()" class="close">
+Cancelar
+</button>
+
+</div>
+
+</div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <span class="hero-tagline">TheByteStudio | Tu Marketplace de Templates</span>
+            <h1>Plantillas Web que <strong>Venden</strong> para tu Negocio</h1>
+            <p>Lanza tu sitio en tiempo récord con diseños optimizados psicológicamente para convertir visitas en clientes.</p>
+            
+            <div class="hero-btns">
+                <a href="#catalogo" class="btn btn-primary btn-lg">Explorar Catálogo</a>
+                <a href="#" class="btn btn-secondary btn-lg">Cómo Funciona</a>
+            </div>
+
+            <div class="hero-visual-placeholder">
+                </div>
+        </div>
+    </section>
+
+    <section id="catalogo" class="catalog">
+        <div class="container">
+            <h2 class="section-title">Plantillas Destacadas</h2>
+            <p class="section-subtitle">Diseños modernos, rápidos y autoinstalables listos para despegar.</p>
+            
+           <div class="carousel-container">
+
+<button class="carousel-btn prev">‹</button>
+
+<div class="carousel" id="carousel">
+
+<div class="card">
+<div class="card-img">[Vista previa E-commerce]</div>
+<div class="card-content">
+<div class="tags">E-COMMERCE • RESPONSIVE</div>
+<h3>Tienda Online "ProStore"</h3>
+<p>Perfecta para vender productos físicos.</p>
+<div class="price">$49.00</div>
+<div class="card-actions">
+<a href="#" class="btn btn-outline demo-btn">Ver Demo</a>
+<button class="btn btn-primary btn-buy">Comprar</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-img">[Vista previa Portafolio]</div>
+<div class="card-content">
+<div class="tags">PORTAFOLIO • AGENCIA</div>
+<h3>Agencia Creativa "Nova"</h3>
+<p>Perfecta para mostrar proyectos.</p>
+<div class="price">$39.00</div>
+<div class="card-actions">
+<a href="#" class="btn btn-outline demo-btn">Ver Demo</a>
+<button class="btn btn-primary btn-buy">Comprar</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-img">[Vista previa Landing]</div>
+<div class="card-content">
+<div class="tags">LANDING • CONVERSIÓN</div>
+<h3>Landing "Ventas Rápidas"</h3>
+<p>Optimizada para capturar leads.</p>
+<div class="price">$29.00</div>
+<div class="card-actions">
+<a href="#" class="btn btn-outline demo-btn">Ver Demo</a>
+<button class="btn btn-primary btn-buy">Comprar</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-img">[Vista previa SaaS]</div>
+<div class="card-content">
+<div class="tags">SAAS • STARTUP</div>
+<h3>SaaS Launch</h3>
+<p>Plantilla ideal para startups.</p>
+<div class="price">$59.00</div>
+<div class="card-actions">
+<a href="#" class="btn btn-outline demo-btn">Ver Demo</a>
+<button class="btn btn-primary btn-buy">Comprar</button>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-img">[Vista previa Restaurante]</div>
+<div class="card-content">
+<div class="tags">RESTAURANTE</div>
+<h3>Food Express</h3>
+<p>Ideal para restaurantes.</p>
+<div class="price">$35.00</div>
+<div class="card-actions">
+<a href="#" class="btn btn-outline demo-btn">Ver Demo</a>
+<button class="btn btn-primary btn-buy">Comprar</button>
+</div>
+</div>
+</div>
+
+</div>
+
+<button class="carousel-btn next">›</button>
+
+</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2 style="font-family: 'Poppins', sans-serif; margin-bottom: 10px;">TheByteStudio</h2>
+            <p>Santo Domingo, Ecuador</p>
+            <p style="margin-top: 25px; font-size: 0.9rem; color: #aaa;">&copy; 2026 TheByteStudio. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <script src="./estilos.js"></script>
+
+</body>
+</html>

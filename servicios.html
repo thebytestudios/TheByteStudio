@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servicios - TheByteStudio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* VARIABLES */
+:root{
+--primary:#0f3b57;
+--accent:#0088ff;
+--light:#ffffff;
+--text:#333;
+--font-main:'Inter',sans-serif;
+--font-title:'Poppins',sans-serif;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:var(--font-main);
+color:var(--text);
+background:#fff;
+line-height:1.6;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 20px;
+}
+
+/* NAVBAR */
+
+header{
+background:white;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 0;
+}
+
+.logo{
+font-family:var(--font-title);
+font-size:26px;
+font-weight:800;
+color:var(--primary);
+}
+
+.logo span{
+color:var(--accent);
+}
+
+.nav-links{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+.nav-links a{
+text-decoration:none;
+font-weight:600;
+color:var(--primary);
+}
+
+.nav-links a:hover{
+color:var(--accent);
+}
+
+/* HERO */
+
+.hero{
+padding:120px 0;
+text-align:center;
+background:linear-gradient(135deg,#e0f2fe,#ffffff);
+}
+
+.hero h1{
+font-size:3rem;
+font-family:var(--font-title);
+color:var(--primary);
+}
+
+.hero p{
+margin-top:20px;
+font-size:1.2rem;
+color:#555;
+max-width:600px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.btn{
+display:inline-block;
+margin-top:30px;
+padding:14px 30px;
+border-radius:8px;
+background:var(--accent);
+color:white;
+font-weight:600;
+text-decoration:none;
+transition:.3s;
+}
+
+.btn:hover{
+background:#0066cc;
+}
+
+/* SERVICES GRID */
+
+.services{
+padding:80px 0;
+}
+
+.section-title{
+text-align:center;
+font-family:var(--font-title);
+font-size:2.5rem;
+color:var(--primary);
+margin-bottom:50px;
+}
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.service-card{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.05);
+transition:.3s;
+}
+
+.service-card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
+}
+
+.service-card h3{
+margin-bottom:10px;
+color:var(--primary);
+font-family:var(--font-title);
+}
+
+/* PROCESS */
+
+.process{
+padding:80px 0;
+background:#f7fafc;
+}
+
+.process-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.step{
+text-align:center;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+.step h3{
+color:var(--primary);
+margin-bottom:10px;
+}
+
+/* BENEFITS */
+
+.benefits{
+padding:80px 0;
+}
+
+.benefits-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.benefit{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 8px 25px rgba(0,0,0,0.05);
+}
+
+/* FAQ */
+
+.faq{
+padding:80px 0;
+background:#f7fafc;
+}
+
+.faq-item{
+margin-bottom:25px;
+}
+
+.faq-item h3{
+color:var(--primary);
+margin-bottom:8px;
+}
+
+/* CTA */
+
+.cta{
+padding:100px 20px;
+text-align:center;
+background:var(--primary);
+color:white;
+}
+
+.cta h2{
+font-size:2.3rem;
+font-family:var(--font-title);
+}
+
+.cta p{
+margin-top:10px;
+margin-bottom:25px;
+color:#ddd;
+}
+
+/* FOOTER */
+
+footer{
+background:#0f3b57;
+color:white;
+text-align:center;
+padding:40px 20px;
+}
+
+footer p{
+color:#ccc;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:2.3rem;
+}
+
+.nav-links{
+display:none;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="container">
+<nav>
+
+<a class="logo" href="index.html">TheByte<span>Studio</span></a>
+
+<ul class="nav-links">
+<li><a href="index.html">Inicio</a></li>
+<li><a href="index.html#catalogo">Plantillas</a></li>
+<li><a href="servicios.html">Servicios</a></li>
+<li><a href="./contacto.html">Contacto</a></li>
+</ul>
+
+</nav>
+</div>
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Servicios Web Profesionales</h1>
+
+<p>
+Creamos sitios web modernos, rápidos y optimizados para ayudar
+a negocios y emprendedores a crecer online.
+</p>
+
+<a href="#servicios" class="btn">Explorar Servicios</a>
+
+</div>
+
+</section>
+
+<section id="servicios" class="services">
+
+<div class="container">
+
+<h2 class="section-title">Nuestros Servicios</h2>
+
+<div class="services-grid">
+
+<div class="service-card">
+<h3>Diseño Web Profesional</h3>
+<p>Desarrollamos sitios web modernos y adaptados a tu marca.</p>
+</div>
+
+<div class="service-card">
+<h3>Tiendas Online</h3>
+<p>Creamos e-commerce listos para vender productos o servicios.</p>
+</div>
+
+<div class="service-card">
+<h3>Personalización de Plantillas</h3>
+<p>Adaptamos nuestras plantillas para tu negocio.</p>
+</div>
+
+<div class="service-card">
+<h3>Optimización SEO</h3>
+<p>Mejoramos tu posicionamiento en Google.</p>
+</div>
+
+<div class="service-card">
+<h3>Integración de Pagos</h3>
+<p>Configuramos sistemas de pago online.</p>
+</div>
+
+<div class="service-card">
+<h3>Mantenimiento Web</h3>
+<p>Actualizaciones, seguridad y soporte continuo.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="process">
+
+<div class="container">
+
+<h2 class="section-title">Nuestro Proceso</h2>
+
+<div class="process-grid">
+
+<div class="step">
+<h3>1. Consulta</h3>
+<p>Analizamos tu proyecto y objetivos.</p>
+</div>
+
+<div class="step">
+<h3>2. Diseño</h3>
+<p>Creamos la estructura ideal para tu web.</p>
+</div>
+
+<div class="step">
+<h3>3. Desarrollo</h3>
+<p>Construimos tu sitio web optimizado.</p>
+</div>
+
+<div class="step">
+<h3>4. Lanzamiento</h3>
+<p>Publicamos tu web lista para clientes.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="benefits">
+
+<div class="container">
+
+<h2 class="section-title">Por Qué Elegirnos</h2>
+
+<div class="benefits-grid">
+
+<div class="benefit">
+<h3>⚡ Alta velocidad</h3>
+<p>Sitios optimizados para cargar rápidamente.</p>
+</div>
+
+<div class="benefit">
+<h3>📱 Responsive</h3>
+<p>Perfectos en móviles, tablets y computadoras.</p>
+</div>
+
+<div class="benefit">
+<h3>🎯 Diseñados para vender</h3>
+<p>Estructuras enfocadas en conversión.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="faq">
+
+<div class="container">
+
+<h2 class="section-title">Preguntas Frecuentes</h2>
+
+<div class="faq-item">
+<h3>¿Cuánto tarda un proyecto?</h3>
+<p>Entre 3 y 10 días dependiendo del proyecto.</p>
+</div>
+
+<div class="faq-item">
+<h3>¿Incluye hosting?</h3>
+<p>Podemos ayudarte a configurar dominio y hosting.</p>
+</div>
+
+<div class="faq-item">
+<h3>¿Puedo editar mi web después?</h3>
+<p>Sí, todas nuestras webs son fáciles de actualizar.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<div class="container">
+
+<h2>¿Listo para crear tu sitio web?</h2>
+
+<p>Trabajemos juntos para lanzar tu proyecto online.</p>
+
+<a href="contacto.html" class="btn">Solicitar Cotización</a>
+
+</div>
+
+</section>
+
+<footer>
+
+<h2>TheByteStudio</h2>
+<p>Santo Domingo, Ecuador</p>
+<p style="margin-top:15px;font-size:14px;">
+© 2026 TheByteStudio
+</p>
+
+</footer>
+
+</body>
+</html>
+
