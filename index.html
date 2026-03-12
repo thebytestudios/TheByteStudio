@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Día de la Mujer | Un Tributo a Ti</title>
+    <style>
+        :root {
+            --bg-dark: #0f0c29;
+            --bg-mid: #302b63;
+            --bg-light: #24243e;
+            --gold: #d4af37;
+            --rose-gold: #b76e79;
+            --text-light: #f5f5f5;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', 'Georgia', serif;
+            background: linear-gradient(135deg, var(--bg-dark), var(--bg-mid), var(--bg-light));
+            background-attachment: fixed;
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Efecto de luces flotantes en el fondo */
+        .background-effects {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: floatOrb 10s infinite alternate ease-in-out;
+        }
+
+        .orb:nth-child(1) { width: 300px; height: 300px; background: var(--rose-gold); top: 5%; left: 10%; }
+        .orb:nth-child(2) { width: 400px; height: 400px; background: var(--gold); bottom: 5%; right: 5%; animation-delay: -5s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, -40px) scale(1.1); }
+        }
+
+        /* Contenedor principal con efecto cristal */
+        .main-container {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 650px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            margin: 40px 0;
+        }
+
+        .date-badge {
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin: 0 0 20px;
+            font-weight: 400;
+            background: linear-gradient(to right, var(--gold), var(--rose-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .divider {
+            width: 60px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 35px;
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #d1d1d1;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Tarjetas interactivas de cualidades */
+        .qualities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+            margin-bottom: 45px;
+        }
+
+        .quality-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 25px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .quality-card:hover {
+            background: rgba(212, 175, 55, 0.08);
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .quality-icon { font-size: 1.8rem; margin-bottom: 12px; }
+        
+        .quality-title { 
+            font-family: 'Arial', sans-serif; 
+            font-size: 0.85rem; 
+            letter-spacing: 2px; 
+            color: var(--gold); 
+            text-transform: uppercase;
+        }
+        
+        .quality-text { 
+            font-size: 0.95rem; 
+            margin-top: 15px; 
+            display: none; 
+            color: #ccc;
+            line-height: 1.5;
+            animation: fadeInText 0.5s ease;
+        }
+
+        @keyframes fadeInText { from { opacity: 0; } to { opacity: 1; } }
+
+        .btn-reveal {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 16px 45px;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-reveal:hover {
+            background: var(--gold);
+            color: var(--bg-dark);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+        }
+
+        #final-message {
+            display: none;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            animation: slideUp 1s ease forwards;
+        }
+
+        #final-message p {
+            font-size: 1.25rem;
+            line-height: 2;
+            color: #fff;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-size: 1.6rem;
+            color: var(--rose-gold);
+            font-style: italic;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-effects">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <div class="main-container">
+        <div class="date-badge">8 de Marzo de 2026</div>
+        <h1>Mujer Extraordinaria</h1>
+        <div class="divider"></div>
+        
+        <p class="intro-text">"La verdadera elegancia no consiste en destacar, sino en ser recordada. Y tú, dejas una huella imborrable en cada paso que das."</p>
+
+        <div class="qualities-grid">
+            <div class="quality-card" onclick="toggleQuality(this)">
+                <div class="quality-icon">✨</div>
+                <div class="quality-title">Tu Luz</div>
+                <div class="quality-text">Esa capacidad innata de iluminar los días más grises con tu sola presencia.</div>
+            </div>
+            <div class="quality-card" onclick="toggleQuality(this)">
+                <div class="quality-icon">🛡️</div>
+                <div class="quality-title">Tu Fuerza</div>
+                <div class="quality-text">La resiliencia admirable con la que enfrentas el mundo y te superas a ti misma.</div>
+            </div>
+            <div class="quality-card" onclick="toggleQuality(this)">
+                <div class="quality-icon">💫</div>
+                <div class="quality-title">Tu Esencia</div>
+                <div class="quality-text">La autenticidad que te hace única, irrepetible y profundamente valiosa.</div>
+            </div>
+        </div>
+
+        <button class="btn-reveal" onclick="revealMessage()">Descubrir Mensaje Final</button>
+
+        <div id="final-message">
+            <p>Hoy celebramos tu existencia, tus luchas, tus victorias y la infinita capacidad que tienes para transformar todo lo que tocas.<br><br>Que el mundo siempre reconozca tu valor y que nunca dejes de brillar con la intensidad que te caracteriza.</p>
+            <div class="signature">¡Feliz Día de la Mujer!</div>
+        </div>
+    </div>
+
+    <script>
+        // Función para abrir/cerrar las tarjetas de cualidades
+        function toggleQuality(card) {
+            const text = card.querySelector('.quality-text');
+            if (text.style.display === 'block') {
+                text.style.display = 'none';
+                card.style.background = 'rgba(255, 255, 255, 0.02)';
+            } else {
+                text.style.display = 'block';
+                card.style.background = 'rgba(212, 175, 55, 0.08)';
+            }
+        }
+
+        // Función para mostrar el mensaje principal
+        function revealMessage() {
+            document.getElementById('final-message').style.display = 'block';
+            document.querySelector('.btn-reveal').style.display = 'none';
+            // Desplaza suavemente la pantalla hacia el mensaje final
+            setTimeout(() => {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
