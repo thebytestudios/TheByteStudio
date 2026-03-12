@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>The Byte Studio | Impulsa tu proyecto con código maestro</title>
+    <style>
+        /* --- ESTILOS DE FUENTE Y VARIABLES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+        :root {
+            --bg-deep: #050811;
+            --bg-dark: #080b12;
+            --primary-blue: #00ffff;
+            --secondary-purple: #bf00ff;
+            --accent-cyan: #00e0ff;
+            --text-main: #f0f0f0;
+            --text-sub: #b0b0b0;
+            --glass-bg: rgba(255, 255, 255, 0.015);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            --font-family: 'Inter', sans-serif;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        button { cursor: pointer; border: none; transition: 0.3s; }
+
+        /* --- GRADIENTE DE FONDO (Reemplazo de animación) --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(8, 11, 18, 0.8) 0%, rgba(5, 8, 17, 0.9) 100%),
+                radial-gradient(circle at 10% 10%, rgba(0, 255, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(191, 0, 255, 0.05) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        header {
+            background-color: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 0 15px var(--primary-blue);
+        }
+
+        .logo span { color: var(--primary-blue); }
+
+        nav { display: flex; gap: 2rem; }
+        nav a { font-weight: 500; font-size: 0.9rem; text-transform: uppercase; }
+        nav a:hover { color: var(--primary-blue); }
+
+        .btn-explorar {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: #000;
+            font-weight: 700;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-explorar:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* --- SECCIÓN HERO --- */
+        .hero {
+            padding: 12rem 5% 6rem;
+            text-align: center;
+            background: linear-gradient(180deg, transparent, rgba(8, 11, 18, 0.3));
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, var(--text-sub));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-sub);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .btn-ver-catalogo {
+            background: linear-gradient(135deg, var(--secondary-purple), var(--primary-blue));
+            color: #fff;
+            font-weight: 700;
+            padding: 0.8rem 2rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: 0 0 25px rgba(191, 0, 255, 0.3);
+        }
+
+        .btn-ver-catalogo:hover {
+            box-shadow: 0 0 35px rgba(191, 0, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* --- SECCIONES COMUNES --- */
+        section { padding: 4rem 5%; }
+        section h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #fff, var(--text-sub));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(191, 0, 255, 0.2);
+        }
+
+        /* --- CUADRÍCULA DE PLANTILLAS DESTACADAS (Duplicada) --- */
+        .featured-templates { background-color: var(--bg-dark); }
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .template-card {
+            background-color: #000;
+            border-radius: 20px;
+            border: 2px solid var(--primary-blue);
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+        }
+
+        .template-card:hover { transform: translateY(-5px); }
+
+        /* Estilos específicos por card (bordes) */
+        .template-card-purple { border-color: var(--secondary-purple); }
+        
+        .label {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: #000;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .label-hot { background: linear-gradient(135deg, var(--secondary-purple), #ff00ff); color: #fff; box-shadow: 0 0 10px rgba(191, 0, 255, 0.3); }
+
+        .image-placeholder {
+            background-color: var(--bg-deep);
+            height: 160px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-sub);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border: 1px solid var(--glass-border);
+        }
+
+        .card-details { padding: 0.5rem; }
+
+        .tags-wrapper { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .tag {
+            color: var(--primary-blue);
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .template-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; text-transform: uppercase; }
+        .template-description { font-size: 0.8rem; color: var(--text-sub); margin-bottom: 1rem; line-height: 1.4; }
+
+        .rating { color: var(--accent-cyan); font-size: 0.8rem; margin-bottom: 0.5rem; }
+        .star { margin-right: 2px; }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-ver-detalles {
+            background-color: var(--bg-deep);
+            color: var(--primary-blue);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            border: 1px solid var(--primary-blue);
+            transition: background-color 0.3s;
+        }
+
+        .btn-ver-detalles:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        .price { font-size: 1.1rem; font-weight: 700; color: var(--primary-blue); }
+        .price span { font-size: 0.8rem; color: var(--text-sub); font-weight: 400; }
+
+        /* --- SECCIÓN POR QUÉ --- */
+        .why-choose { background-color: var(--bg-deep); }
+        .features-wrapper {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-box {
+            background-color: var(--bg-dark);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .feature-box:hover { transform: translateY(-5px); border-color: rgba(191, 0, 255, 0.2); }
+
+        .icon-placeholder {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(191, 0, 255, 0.1);
+            border: 1px solid rgba(191, 0, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--secondary-purple);
+            font-size: 1.2rem;
+        }
+
+        .feature-title { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 0.5rem; }
+        .feature-desc { font-size: 0.8rem; color: var(--text-sub); line-height: 1.4; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--bg-dark);
+            padding: 3rem 5%;
+            border-top: 1px solid var(--glass-border);
+            margin-top: auto;
+        }
+
+        .footer-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .footer-left { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-text { font-size: 0.8rem; color: var(--text-sub); line-height: 1.4; max-width: 300px; }
+
+        .social-media { display: flex; gap: 1rem; justify-content: flex-end; }
+        .social-box {
+            width: 35px;
+            height: 35px;
+            background-color: #000;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-sub);
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .social-box:hover { transform: scale(1.1); }
+
+        /* Colores específicos por social box */
+        .social-box-instagram { border-color: #bf00ff; color: #bf00ff; }
+        .social-box-github { border-color: #00ff00; color: #00ff00; }
+        .social-box-linkedin { border-color: #0080ff; color: #0080ff; }
+        .social-box-x { border-color: #00ffff; color: #00ffff; }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            margin-top: 3rem;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
+        }
+        
+        /* --- RESPONSIVE DESIGN (MEDIA QUERIES) --- */
+
+/* Tablets y Laptops pequeñas (Menos de 1024px) */
+@media (max-width: 1024px) {
+    .templates-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en vez de 3 */
+    }
+    .features-wrapper {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas para los beneficios */
+    }
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+}
+
+/* Celulares Grandes y Tablets en vertical (Menos de 768px) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    nav {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 10rem 5% 4rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .footer-wrapper {
+        grid-template-columns: 1fr; /* Todo en una sola columna */
+        text-align: center;
+    }
+
+    .footer-left, .social-media {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Celulares Estándar (Menos de 480px) */
+@media (max-width: 480px) {
+    .templates-grid {
+        grid-template-columns: 1fr; /* 1 sola columna: ideal para móviles */
+    }
+
+    .features-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn-ver-catalogo {
+        width: 100%; /* El botón ocupa todo el ancho en móvil */
+        font-size: 0.8rem;
+    }
+
+    .template-card {
+        padding: 0.8rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- ESTILOS DEL MENÚ HAMBURGUESA --- */
+.menu-toggle {
+    display: none; /* Escondido en PC */
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.pc-only { display: block; }
+.mobile-only { display: none; }
+
+/* --- RESPONSIVE: MÓVIL (Menos de 768px) --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Aparece en móvil */
+    }
+
+    .pc-only { display: none; } /* Esconde botón de PC */
+    .mobile-only { display: block; margin-top: 2rem; width: 100%; }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Escondido fuera de la pantalla a la derecha */
+        width: 80%;
+        height: 100vh;
+        background: rgba(8, 11, 18, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        transition: 0.4s ease-in-out;
+        border-left: 1px solid var(--glass-border);
+        z-index: 1000;
+    }
+
+    /* Cuando el menú tenga la clase 'active', se desliza hacia adentro */
+    nav.active {
+        right: 0;
+    }
+
+    nav a {
+        font-size: 1.2rem;
+    }
+}
+/* --- ESTILOS DEL HEADER (PC Y MÓVIL) --- */
+header {
+    display: flex;
+    justify-content: space-between; /* Logo a la izquierda, Menú/Botón a la derecha */
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(8, 11, 18, 0.9);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Escondemos la hamburguesa en PC */
+.menu-toggle {
+    display: none;
+    font-size: 2.2rem;
+    color: var(--primary-blue);
+    cursor: pointer;
+}
+
+/* --- AJUSTES PARA CELULAR --- */
+@media (max-width: 768px) {
+    .pc-only {
+        display: none; /* Escondemos el botón de explorar normal */
+    }
+
+    .menu-toggle {
+        display: block; /* Mostramos la hamburguesa a la derecha */
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Menú escondido a la derecha */
+        width: 70%; /* Ancho del menú lateral */
+        height: 100vh;
+        background: #080b12;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-left: 1px solid var(--primary-blue);
+    }
+
+    /* Clase que activa el JavaScript para mostrar el menú */
+    nav.active {
+        right: 0;
+    }
+}
+header {
+    display: flex !important; /* Fuerza el modo flexible */
+    justify-content: space-between !important; /* Empuja logo a izq y menú a der */
+    align-items: center;
+    padding: 10px 5%;
+    width: 100%; /* Ocupa todo el ancho del celular */
+    background: #080b12;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.logo {
+    flex: 1; /* Hace que el logo se quede en su sitio */
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* Solo se ve en celular */
+.menu-toggle {
+    display: none; /* Se oculta en PC */
+    cursor: pointer;
+}
+
+.menu-toggle i {
+    font-size: 2.5rem; /* Tamaño grande para que sea fácil tocarlo */
+    color: #00ffff; /* Color azul brillante */
+}
+
+/* --- ESTO ES LO QUE HACE QUE SE VEA EN EL CELULAR --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block !important; /* AQUÍ APARECE LA HAMBURGUESA */
+    }
+
+    .pc-only {
+        display: none !important; /* Se oculta el botón de PC */
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Escondido a la derecha */
+        width: 70%;
+        height: 100vh;
+        background: #050811;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: 0.5s;
+        border-left: 2px solid #00ffff;
+    }
+
+    nav.active {
+        right: 0; /* Aparece al tocar */
+    }
+}
+/* --- RESET PARA EL HEADER --- */
+header {
+    display: flex !important;
+    flex-direction: row !important; /* Fuerza a que estén uno al lado del otro */
+    justify-content: space-between !important; /* Separa logo de hamburguesa */
+    align-items: center !important;
+    padding: 0 5% !important;
+    height: 70px !important; /* Altura fija para que no se amontone */
+    width: 100% !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    background: #080b12 !important;
+    z-index: 1000 !important;
+    text-align: left !important; /* Quita el centrado heredado */
+}
+
+.logo {
+    margin: 0 !important; /* Quita cualquier margen que lo centre */
+    text-align: left !important;
+    font-size: 1.2rem !important;
+    white-space: nowrap !important; /* Evita que el nombre se parta en dos líneas */
+}
+
+/* --- ICONO HAMBURGUESA --- */
+.menu-toggle {
+    display: block !important; /* Asegura que se vea en celular */
+    cursor: pointer !important;
+    margin: 0 !important;
+}
+
+.menu-toggle i {
+    font-size: 2.2rem !important;
+    color: #00ffff !important;
+    display: block !important;
+}
+
+/* --- NAVEGACIÓN (OCULTA POR DEFECTO EN MÓVIL) --- */
+@media (max-width: 768px) {
+    nav {
+        display: none; /* Escondemos el menú normal */
+    }
+    
+    /* Cuando se activa el menú */
+    nav.active {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%;
+        height: 100vh;
+        background: #050811;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        z-index: 999;
+        border-left: 1px solid #00ffff;
+    }
+
+    .pc-only {
+        display: none !important; /* Esconde el botón de explorar en móvil */
+    }
+}
+
+/* En PC vuelve a la normalidad */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none !important;
+    }
+    nav {
+        display: flex !important;
+        gap: 20px;
+    }
+}
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 5%;
+    background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+}
+
+/* La imagen transparente que mencionas */
+.hero-image-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 800px;
+    opacity: 0.3; /* Transparencia */
+    z-index: 1;
+    pointer-events: none; /* Para que no estorbe al hacer clic */
+}
+
+.hero-image-overlay img {
+    width: 100%;
+    filter: hue-rotate(180deg) brightness(1.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.hero-content h1 span {
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* Botón Estelar */
+.btn-stellar {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #00ffff, #0080ff);
+    color: #050811;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    transition: 0.3s ease;
+}
+
+.btn-stellar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
+}
+
+/* Ajuste para Celular */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    .hero-image-overlay {
+        width: 150%; /* Se agranda un poco en móvil para dar textura */
+    }
+}
+/* --- TARJETAS MÁS PEQUEÑAS Y ESTILIZADAS --- */
+.templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Bajamos el mínimo de 300px a 250px */
+    gap: 1.5rem;
+    padding: 0 10px;
+}
+
+.template-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border-radius: 15px; /* Bordes un poco menos redondeados */
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 1rem; /* Reducimos el padding interno */
+    position: relative;
+    transition: 0.3s ease;
+}
+
+/* Imagen de previsualización más pequeña */
+.image-placeholder {
+    height: 140px !important; /* Bajamos de 160px a 140px */
+    font-size: 0.7rem !important;
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+}
+
+.template-title {
+    font-size: 1rem !important; /* Texto un poco más pequeño */
+    margin-bottom: 0.3rem;
+}
+
+.template-description {
+    font-size: 0.75rem !important;
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+    color: #94a3b8;
+}
+
+/* Ajuste de etiquetas (Hot/Nuevo) */
+.label {
+    font-size: 0.6rem !important;
+    padding: 2px 8px !important;
+}
+
+/* Fila de precio y botón más compacta */
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.price {
+    font-size: 1rem !important;
+}
+
+.btn-ver-detalles {
+    padding: 6px 12px !important;
+    font-size: 0.65rem !important;
+}
+
+/* Ajuste específico para celulares muy pequeños */
+@media (max-width: 480px) {
+    .templates-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+}
+header {
+    width: 100% !important;
+    height: 70px !important;
+    background: rgba(8, 11, 18, 0.95) !important;
+    backdrop-filter: blur(15px);
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    /* Eliminamos el display flex de aquí para evitar conflictos */
+}
+
+.header-container {
+    position: absolute; /* Clave para el centrado manual */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Este comando lo centra perfectamente */
+    
+    width: 90%; /* Margen en los lados para que no toque los bordes */
+    max-width: 1200px; /* El tope que queríamos para PC */
+    
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+/* Ajustes para el Menú en PC */
+nav {
+    display: flex;
+    gap: 25px;
+    margin-left: auto; /* Empuja el menú hacia la derecha (cerca del botón) */
+    margin-right: 25px;
+}
+
+/* --- CORRECCIÓN PARA CELULAR --- */
+@media (max-width: 768px) {
+    .header-container {
+        width: 95%; /* Un poco más de espacio en los lados en móvil */
+    }
+
+    .pc-only {
+        display: none !important;
+    }
+
+    nav {
+        display: none; /* Se oculta para el menú lateral */
+    }
+}
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        top: 70px; /* Empieza justo debajo del header */
+        right: -100%; /* Escondido */
+        
+        /* CAMBIO CLAVE: Solo el ancho del contenido */
+        width: fit-content !important; 
+        min-width: 200px; /* Un mínimo para que no se vea muy flaco */
+        height: auto !important; /* Ya no ocupa toda la altura de la pantalla */
+        max-height: calc(100vh - 70px); /* Evita que se salga de la pantalla */
+        
+        background: rgba(8, 11, 18, 0.98);
+        backdrop-filter: blur(20px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Alinea los links arriba */
+        align-items: flex-end; /* Alinea los textos a la derecha */
+        gap: 1.5rem;
+        padding: 2rem; /* Espacio interno para que respire */
+        
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-radius: 0 0 0 20px; /* Redondea solo la esquina inferior izquierda */
+        border-left: 1px solid var(--primary-blue);
+        border-bottom: 1px solid var(--primary-blue);
+        z-index: 1000;
+    }
+
+    nav.active {
+        right: 0; /* Se desliza hasta el borde derecho */
+    }
+
+    nav a {
+        font-size: 1rem;
+        width: 100%;
+        text-align: right; /* Texto alineado a la derecha */
+    }
+}
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        /* Bajamos el menú un poco más (el header mide 70px, así que 85px le da aire) */
+        top: 85px; 
+        right: -100%; /* Escondido */
+        
+        /* Ajuste de tamaño al contenido */
+        width: fit-content !important;
+        min-width: 180px; 
+        height: auto !important;
+        
+        /* Fondo con diseño Glassmorphism */
+        background: rgba(8, 11, 18, 0.9);
+        backdrop-filter: blur(20px);
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start; /* Alineamos links a la izquierda del cuadrito */
+        gap: 1.2rem;
+        padding: 1.5rem;
+        
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        
+        /* Bordes redondeados en todas las esquinas para efecto flotante */
+        border-radius: 15px; 
+        border: 1px solid rgba(0, 255, 255, 0.3);
+        z-index: 1000;
+        
+        /* Margen a la derecha para que no toque el borde físico del celular si prefieres, 
+           pero como pediste "apegado", lo dejaremos en right: 10px cuando esté activo */
+    }
+
+    nav.active {
+        /* Lo pegamos a la derecha con un pequeño margen de 10px para que se vea moderno */
+        right: 10px; 
+    }
+
+    nav a {
+        font-size: 0.95rem;
+        color: #fff;
+        text-decoration: none;
+        width: 100%;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    /* El botón de explorar dentro del menú móvil */
+    .mobile-only {
+        margin-top: 10px;
+        font-size: 0.8rem;
+        padding: 10px 20px;
+    }
+}
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        /* Si tu header mide 70px, ponemos 70px para que no haya separación arriba */
+        top: 70px; 
+        right: -100%; /* Escondido */
+        
+        /* Ancho ajustado al contenido */
+        width: fit-content !important;
+        min-width: 180px;
+        height: auto !important;
+        
+        background: rgba(8, 11, 18, 0.98); /* Un poco más sólido para que se vea mejor */
+        backdrop-filter: blur(20px);
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+        
+        transition: 0.4s ease-in-out;
+        
+        /* Quitamos el redondeo de la derecha para que se vea "pegado" */
+        border-radius: 0 0 0 15px; 
+        border-left: 1px solid var(--primary-blue);
+        border-bottom: 1px solid var(--primary-blue);
+        z-index: 1000;
+    }
+
+    nav.active {
+        /* PEGADO TOTAL A LA DERECHA */
+        right: 0 !important; 
+    }
+
+    nav a {
+        font-size: 1rem;
+        color: #fff;
+        width: 100%;
+        text-align: left;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    }
+}
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        /* Ajustamos para que suba y tape el hueco negro */
+        top: 60px !important; 
+        right: -100%; /* Escondido */
+        
+        width: fit-content !important;
+        min-width: 180px;
+        height: auto !important;
+        
+        /* Un fondo más sólido para que no se note la separación */
+        background: #080b12 !important; 
+        backdrop-filter: blur(15px);
+        
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        
+        /* Quitamos bordes redondeados de arriba y derecha para que pegue perfecto */
+        border-radius: 0 0 0 20px; 
+        border-left: 1px solid #00ffff;
+        border-bottom: 1px solid #00ffff;
+        z-index: 1001; /* Mayor que el header para que no haya sombras raras */
+        transition: 0.3s ease-in-out;
+    }
+
+    nav.active {
+        /* PEGADO TOTAL AL BORDE DERECHO */
+        right: 0 !important; 
+    }
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <header>
+    <div class="logo">The Byte <span>Studio</span></div>
+    
+    <div class="menu-toggle" id="mobile-menu">
+        <i class='bx bx-menu'></i>
+    </div>
+
+    <nav id="nav-menu">
+        <a href="#">INICIO</a>
+        <a href="#">PLANTILLAS</a>
+        <a href="#">SERVICIOS</a>
+        <a href="#">CONTACTO</a>
+        <button class="btn-explorar mobile-only">EXPLORAR</button>
+    </nav>
+    
+    <button class="btn-explorar pc-only">EXPLORAR</button>
+</header>
+<section class="hero-section">
+    <div class="hero-image-overlay">
+        <img src="https://i.ibb.co/vzPRmYn/circuit-pattern.png" alt="Decoración Tech">
+    </div>
+
+    <div class="hero-content">
+        <h1>IMPULSA TU PROYECTO <br><span>CON CÓDIGO MAESTRO</span></h1>
+        <p>Plantillas premium de alto rendimiento diseñadas para la estética y la conversión. Sin complicaciones.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-stellar">VER CATÁLOGO ESTELAR</a>
+        </div>
+    </div>
+</section>
+
+
+
+    
+
+    <section class="featured-templates">
+        <h2>DESTACADOS DE LA SEMANA</h2>
+        <div class="templates-grid">
+            
+            <article class="template-card template-card-purple">
+                <span class="label label-hot">HOT</span>
+                <div class="image-placeholder">Quantum Dashboard</div>
+                <div class="card-details">
+                    <div class="tags-wrapper">
+                        <span class="tag">React</span>
+                        <span class="tag">SaaS</span>
+                    </div>
+                    <h3 class="template-title">QUANTUM DASHBOARD</h3>
+                    <p class="template-description">A stunning SaaS data visualization UI is marvelous assets UI.</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <div class="price-row">
+                        <button class="btn-ver-detalles">VER DETALLES</button>
+                        <div class="price">$29 <span>USD</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="template-card">
+                <span class="label">NUEVO</span>
+                <div class="image-placeholder">Styleflow E-Com</div>
+                <div class="card-details">
+                    <div class="tags-wrapper">
+                        <span class="tag">Shopify</span>
+                        <span class="tag">E-com</span>
+                    </div>
+                    <h3 class="template-title">STYLEFLOW E-COM</h3>
+                    <p class="template-description">Elegant fashion e-commerce store with high-end imagery.</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <div class="price-row">
+                        <button class="btn-ver-detalles">VER DETALLES</button>
+                        <div class="price">$39 <span>USD</span></div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="template-card">
+                <span class="label">NUEVO</span>
+                <div class="image-placeholder">Artisan Portfolio</div>
+                <div class="card-details">
+                    <div class="tags-wrapper">
+                        <span class="tag">Framer</span>
+                        <span class="tag">Agency</span>
+                    </div>
+                    <h3 class="template-title">ARTISAN PORTFOLIO</h3>
+                    <p class="template-description">Minimalist creative agency portfolio showcasing projects beautifully.</p>
+                    <div class="rating">
+                        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                    </div>
+                    <div class="price-row">
+                        <button class="btn-ver-detalles">VER DETALLES</button>
+                        <div class="price">$19 <span>USD</span></div>
+                    </div>
+                </div>
+            </article>
+            
+        </div>
+    </section>
+
+    <section class="why-choose">
+        <h2>POR QUÉ THE BYTE STUDIO</h2>
+        <div class="features-wrapper">
+            
+            <div class="feature-box">
+                <div class="icon-placeholder">🦊</div>
+                <h4 class="feature-title">DISEÑO A VANGUARDIA</h4>
+                <p class="feature-desc">Descripción breve sobre diseño vanguardista.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-placeholder">👥</div>
+                <h4 class="feature-title">SOPORTE TÉCNICO EXPERTO</h4>
+                <p class="feature-desc">Descripción breve sobre soporte técnico experto.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-placeholder">🔄</div>
+                <h4 class="feature-title">ACTUALIZACIONES DE POR VIDA</h4>
+                <p class="feature-desc">Descripción breve sobre actualizaciones gratuitas.</p>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-placeholder">🛡️</div>
+                <h4 class="feature-title">CÓDIGO LIMPIO Y SEGURO</h4>
+                <p class="feature-desc">Descripción breve sobre código limpio.</p>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-wrapper">
+            <div class="footer-left">
+                <div class="logo">The Byte <span>Studio</span></div>
+                <p class="footer-text">Creando el futuro digital. Únete a nosotros.</p>
+            </div>
+            <div class="footer-right">
+                <div class="social-media">
+                    <div class="social-box social-box-instagram">I</div>
+                    <div class="social-box social-box-github">G</div>
+                    <div class="social-box social-box-linkedin">L</div>
+                    <div class="social-box social-box-x">X</div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2026 The Byte Studio. Todos los derechos reservados.</div>
+    </footer>
+    
+<script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        
+        // Opcional: Cambiar el icono de hamburguesa por una 'X' al abrir
+        const icon = menuToggle.querySelector('i');
+        if (navMenu.classList.contains('active')) {
+            icon.classList.replace('bx-menu', 'bx-x');
+        } else {
+            icon.classList.replace('bx-x', 'bx-menu');
+        }
+    });
+
+    // Cerrar el menú al hacer clic en un enlace (importante en móvil)
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuToggle.querySelector('i').classList.replace('bx-x', 'bx-menu');
+        });
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
