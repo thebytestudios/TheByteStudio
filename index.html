@@ -1053,6 +1053,107 @@ nav {
         padding-top: 2rem !important; 
     }
 }
+        .main-footer {
+    padding: 40px 5%;
+    background: #050811; /* Fondo oscuro profundo */
+    text-align: center;
+}
+
+.footer-glass-card {
+    max-width: 1100px;
+    margin: 0 auto 30px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.footer-left {
+    text-align: left;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.footer-brand h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.footer-left p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Contenedor de iconos */
+.footer-socials {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    border: 1.5px solid;
+    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Colores específicos según tu imagen */
+.instagram { color: #ff00ff; border-color: rgba(255, 0, 255, 0.3); box-shadow: 0 0 10px rgba(255, 0, 255, 0.1); }
+.github { color: #00ff88; border-color: rgba(0, 255, 136, 0.3); box-shadow: 0 0 10px rgba(0, 255, 136, 0.1); }
+.linkedin { color: #0088ff; border-color: rgba(0, 136, 255, 0.3); box-shadow: 0 0 10px rgba(0, 136, 255, 0.1); }
+.x-twitter { color: #00ffff; border-color: rgba(0, 255, 255, 0.3); box-shadow: 0 0 10px rgba(0, 255, 255, 0.1); }
+
+.social-icon:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.copyright {
+    color: #475569;
+    font-size: 0.8rem;
+}
+
+/* --- RESPONSIVO PARA MÓVIL --- */
+@media (max-width: 768px) {
+    .footer-glass-card {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-left {
+        text-align: center;
+    }
+
+    .footer-brand {
+        justify-content: center;
+    }
+
+    .footer-socials {
+        gap: 20px;
+    }
+}
         
 
 
