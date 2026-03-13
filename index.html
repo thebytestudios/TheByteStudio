@@ -1035,7 +1035,25 @@ nav {
         right: 0 !important; 
     }
 }
-
+@media (max-width: 768px) {
+    .hero-section {
+        /* MAGIA: Quitamos la altura obligatoria de pantalla completa */
+        height: auto !important; 
+        
+        /* Ajustamos los espacios internos (arriba, lados, abajo) */
+        padding: 130px 5% 50px !important; 
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    /* Le quitamos el exceso de espacio a la sección de abajo para que suba más */
+    .featured-templates {
+        padding-top: 2rem !important; 
+    }
+}
+        
 
 
     </style>
