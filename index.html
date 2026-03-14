@@ -1155,7 +1155,30 @@ nav {
     }
 }
         
+/* Configura el contenedor oscuro que ya tenías */
+.image-placeholder {
+    width: 100%;
+    height: 160px; /* Mantén la altura que prefieras */
+    border-radius: 10px; /* Mantiene los bordes curvos */
+    overflow: hidden; /* SÚPER IMPORTANTE: Corta la foto para que no se salga de las curvas */
+    background: #0d121c; /* Fondo por si la foto tarda en cargar */
+    margin-bottom: 15px; /* Separa la foto del texto de abajo */
+}
 
+/* Configura la imagen para que llene el espacio perfectamente */
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* MAGIA: Llena el recuadro sin estirar ni deformar la foto */
+    display: block;
+    transition: transform 0.4s ease; /* Prepara el efecto hover */
+}
+
+/* Efecto opcional: La foto hace un ligero zoom al pasar el dedo o mouse */
+.template-card:hover .image-placeholder img {
+    transform: scale(1.08);
+        }
+        
 
     </style>
 </head>
