@@ -1180,6 +1180,25 @@ nav {
         }
         
 
+
+        .image-placeholder {
+    width: 100%;
+    /* Subimos de 160px a 200px para que se vea mejor */
+    height: 200px; 
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0d121c;
+    margin-bottom: 15px;
+    position: relative; /* Para que la etiqueta DESTACADO siga en su sitio */
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto evita que la imagen se vea estirada al agrandarla */
+    display: block;
+}
+        
     </style>
 </head>
 <body>
