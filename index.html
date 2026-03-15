@@ -1172,6 +1172,32 @@ nav {
     object-fit: cover;
     display: block;
 }
+
+        /* Estilo para el logo del footer estilo redes sociales */
+.footer-logo-box {
+    width: 60px; /* Tamaño similar a los iconos */
+    height: 60px;
+    background: rgba(255, 255, 255, 0.03); /* Fondo de cristal muy sutil */
+    border: 1px solid rgba(0, 247, 255, 0.2); /* Borde cian muy fino */
+    border-radius: 15px; /* Bordes redondeados como tus iconos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px); /* Efecto de cristal */
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.1); /* Resplandor exterior */
+    transition: all 0.3s ease;
+}
+
+.footer-logo-box img {
+    width: 70%; /* Deja espacio para que el cuadro respire */
+    filter: drop-shadow(0 0 8px rgba(0, 247, 255, 0.6)); /* Brillo intenso interno */
+}
+
+.footer-logo-box:hover {
+    border-color: rgba(0, 247, 255, 0.8);
+    box-shadow: 0 0 30px rgba(0, 247, 255, 0.3);
+    transform: translateY(-5px);
+}
         
         
     </style>
@@ -1321,9 +1347,10 @@ nav {
     <footer class="main-footer">
     <div class="footer-glass-card">
         <div class="footer-left">
-            <div class="footer-brand">
-                <img src="https://i.postimg.cc/hGMMDYD9/IMG-20260314-193359.png" alt="Logo" class="footer-logo"> <h2>The Byte Studio</h2>
-            </div>
+            <div class="footer-logo-box">
+    <img src="https://i.postimg.cc/hGMMDYD9/IMG-20260314-193359.png" alt="The Byte Studio Neon">
+</div>
+
             <p>Creando el futuro digital.<br>Únete a nosotros.</p>
         </div>
 
